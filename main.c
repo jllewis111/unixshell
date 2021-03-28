@@ -1,13 +1,10 @@
 #include <stdio.h>
-#include <string.h>
 #include <stdlib.h>
+#include <string.h>
 #include <stdbool.h>
 #include <sys/types.h>
-//#include <sys/wait.h>
-
-
-
-
+#include <sys/wait.h>
+#include <unistd.h>
 
 
 char** parse(char* s) {
@@ -60,24 +57,30 @@ int main(int argc, const char * argv[]) {
       parse(input);
 			printf("after parse, what is input: %s\n", input);
       printf("\n");
+      
       pid_t pid = fork();
 
         if (pid == 0) {
-                printf("Child.\n");
+                printf("I am the child.\n");
+      
         }
         if (pid > 0) {
                 printf("I am the parent, the child is %d.\n", pid);
+
         }
         if (pid < 0) {
                 perror("In fork():");
-        }
+                char *args[]={"./exec",NULL};
+                execv(args[0],args);
 
-        exit(0);
+        }
+      
+  
     }
   }
   
-
-  printf("Exited\n");
+  printf("osh exited\n");
+  printf("program finished\n");
   
   return 0;
 }
