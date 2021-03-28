@@ -6,6 +6,9 @@
 #include <sys/wait.h>
 #include <unistd.h>
 
+#define READ_END 0
+#define WRITE_END 1
+
 
 char** parse(char* s) {
   static char* words[500];
