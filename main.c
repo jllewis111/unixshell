@@ -77,7 +77,7 @@ int main(int argc, const char * argv[]) {
                 execv(args[0],args);
 
         }
-      
+      	wait(NULL);
   
     }
   }
